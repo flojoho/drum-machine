@@ -15,6 +15,7 @@ function play(sound) {
 
   const source = context.createBufferSource();
   const gainNode = context.createGain();
+  if(sound === 'ghostnote') gainNode.gain.value = 0.45;
   gainNodes[sound] = gainNode;
 
   source.buffer = audioBuffers[sound];
@@ -26,6 +27,7 @@ function play(sound) {
 window.addEventListener('DOMContentLoaded', async () => {
   await loadWav('kick', 'audio/kick.wav');
   await loadWav('snare', 'audio/snare.wav');
+  await loadWav('ghostnote', 'audio/snare.wav');
   await loadWav('hihat', 'audio/hihat.wav');
   await loadWav('hihat_open', 'audio/hihat_open.wav');
 });
@@ -33,8 +35,10 @@ window.addEventListener('DOMContentLoaded', async () => {
 document.addEventListener("keypress", async e => {
   if(['s', 'd'].includes(e.key)) {
     play('kick');
-  } else if(['f', 'h'].includes(e.key)) {
+  } else if(['f'].includes(e.key)) {
     play('snare');
+  } else if(['g', 'h'].includes(e.key)) {
+    play('ghostnote');
   } else if(['j', 'k'].includes(e.key)) {
     play('hihat');
   } else if(['l'].includes(e.key)) {
