@@ -15,7 +15,7 @@ function play(sound) {
 
   const source = context.createBufferSource();
   const gainNode = context.createGain();
-  if(sound === 'ghostnote') gainNode.gain.value = 0.45;
+  if(sound === 'ghostnote') gainNode.gain.value = 0.6;
   gainNodes[sound] = gainNode;
 
   source.buffer = audioBuffers[sound];
